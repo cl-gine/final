@@ -47,16 +47,14 @@
       background-color: #fbcd00; /*#eee*/
     }
 
-    /* Animated progress bar */
-    #progress-bar {
-      height: 100%;
-      width: 0%;
-      background-color: #513b74;
-      transition: width 0.1s linear;
-    }
-  </style>
-</head>
-<body>
+  <!-- Vertical Progress Bars (Left and Right) -->
+  <div class="vertical-bar left-bar">
+    <div class="progress-fill" id="left-progress"></div>
+  </div>
+
+  <div class="vertical-bar right-bar">
+    <div class="progress-fill" id="right-progress"></div>
+  </div>
 
   <div id="inner">
     <h1>Goodnight</h1>
@@ -67,21 +65,23 @@
     <div id="progress-bar"></div>
   </div>
 
-  <script>
-    const progressBar = document.getElementById("progress-bar");
-    const redirectDelay = 3000; // 🔄 3 seconds
-    const updateInterval = 100; // update every 100ms
+   <script>
+    const leftProgress = document.getElementById("left-progress");
+    const rightProgress = document.getElementById("right-progress");
+    const redirectDelay = 3000; // 3 seconds
+    const updateInterval = 100; // every 100ms
     const totalSteps = redirectDelay / updateInterval;
     let currentStep = 0;
 
     const timer = setInterval(() => {
       currentStep++;
       const progressPercent = (currentStep / totalSteps) * 100;
-      progressBar.style.width = progressPercent + "%";
+      leftProgress.style.height = progressPercent + "%";
+      rightProgress.style.height = progressPercent + "%";
 
       if (currentStep >= totalSteps) {
         clearInterval(timer);
-        window.location.href = "https://cl-gine.github.io/final/goodmorning.html";
+        window.location.href = "https://cl-gine.github.io/final/goodnight.html";
       }
     }, updateInterval);
   </script>
