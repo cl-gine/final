@@ -48,7 +48,7 @@
 </head>
 <body>
 
-  <!-- Optional hidden audio (unchanged) -->
+  <!-- Optional hidden audio -->
   <iframe src="silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
 
   <div id="inner">
@@ -62,7 +62,7 @@
 
   <script>
     const progressBar = document.getElementById("progress-bar");
-    const redirectDelay = 4000; // 🔄 4 seconds
+    const redirectDelay = 3000; // 🔄 3 seconds
     const updateInterval = 100; // update every 100ms
     const totalSteps = redirectDelay / updateInterval;
     let currentStep = 0;
