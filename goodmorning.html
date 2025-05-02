@@ -12,7 +12,7 @@
       background-size: cover;
       margin: 0;
       padding: 0;
-      }
+    }
 
     #inner {
       width: 100%;
@@ -28,31 +28,38 @@
       height: 100px;
       font-family: "Pacifico", sans-serif;
       color: white;
-      /*text-shadow : horizontal-shadow vertical-shadow blur color;
-      text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;*/
-      /*text-shadow: 3px 3px 15px #ffcc00, 3px 3px 15px #ffcc00;*/
       text-shadow: 
         0 0 10px #ffcc00,
         0 0 20px #ffcc00,
         0 0 30px #ffcc00;
     }
 
-    /* Progress bar container */
-    #progress-container {
+    /* Progress Bar Container */
+    .vertical-bar {
       position: fixed;
       bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 6px;
+      width: 6px;
+      height: 100%;
       background-color: #513b74;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column-reverse; /* Makes fill grow from bottom */
+      z-index: 1;
     }
 
-    /* Animated progress bar */
-    #progress-bar {
-      height: 100%;
-      width: 0%;
+    .left-bar {
+      left: 0;
+    }
+
+    .right-bar {
+      right: 0;
+    }
+
+    .progress-fill {
+      width: 100%;
+      height: 0%;
       background-color: #fbcd00;
-      transition: width 0.1s linear;
+      transition: height 0.1s linear;
     }
   </style>
 </head>
@@ -62,22 +69,28 @@
     <h1>Goodmorning</h1>
   </div>
 
-  <!-- Progress Bar -->
-  <div id="progress-container">
-    <div id="progress-bar"></div>
+  <!-- Vertical Progress Bars (Left and Right) -->
+  <div class="vertical-bar left-bar">
+    <div class="progress-fill" id="left-progress"></div>
+  </div>
+
+  <div class="vertical-bar right-bar">
+    <div class="progress-fill" id="right-progress"></div>
   </div>
 
   <script>
-    const progressBar = document.getElementById("progress-bar");
-    const redirectDelay = 3000; // 🔄 3 seconds
-    const updateInterval = 100; // update every 100ms
+    const leftProgress = document.getElementById("left-progress");
+    const rightProgress = document.getElementById("right-progress");
+    const redirectDelay = 3000; // 3 seconds
+    const updateInterval = 100; // every 100ms
     const totalSteps = redirectDelay / updateInterval;
     let currentStep = 0;
 
     const timer = setInterval(() => {
       currentStep++;
       const progressPercent = (currentStep / totalSteps) * 100;
-      progressBar.style.width = progressPercent + "%";
+      leftProgress.style.height = progressPercent + "%";
+      rightProgress.style.height = progressPercent + "%";
 
       if (currentStep >= totalSteps) {
         clearInterval(timer);
