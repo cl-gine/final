@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Goodnight</title>
+  <title>Goodmorning</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
   <style>
     html, body {
@@ -28,26 +28,48 @@
       height: 100px;
       font-family: "Pacifico", sans-serif;
       color: white;
-      /*text-shadow : horizontal-shadow vertical-shadow blur color;
-      text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
-      text-shadow: 3px 3px 15px #fcf7f4, 3px 3px 15px #fcf7f4;*/
       text-shadow: 
-      0 0 10px #8A2BE2,
-      0 0 20px #8A2BE2,
-      0 0 30px #8A2BE2;
+        0 0 10px #ffcc00,
+        0 0 20px #ffcc00,
+        0 0 30px #ffcc00;
     }
 
-    /* Progress bar container */
-    #progress-container {
+    /* Progress Bar Container */
+    .vertical-bar {
       position: fixed;
       bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 6px;
-      background-color: #fbcd00; /*#eee*/
+      width: 6px;
+      height: 100%;
+      background-color: #513b74;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column-reverse; /* Makes fill grow from bottom */
+      z-index: 1;
     }
 
-  /*-- Vertical Progress Bars (Left and Right) --*/
+    .left-bar {
+      left: 0;
+    }
+
+    .right-bar {
+      right: 0;
+    }
+
+    .progress-fill {
+      width: 100%;
+      height: 0%;
+      background-color: #fbcd00;
+      transition: height 0.1s linear;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="inner">
+    <h1>Goodnight</h1>
+  </div>
+
+  <!-- Vertical Progress Bars (Left and Right) -->
   <div class="vertical-bar left-bar">
     <div class="progress-fill" id="left-progress"></div>
   </div>
@@ -56,16 +78,7 @@
     <div class="progress-fill" id="right-progress"></div>
   </div>
 
-  <div id="inner">
-    <h1>Goodnight</h1>
-  </div>
-
-  /*-- Progress Bar --*/
-  <div id="progress-container">
-    <div id="progress-bar"></div>
-  </div>
-
-   <script>
+  <script>
     const leftProgress = document.getElementById("left-progress");
     const rightProgress = document.getElementById("right-progress");
     const redirectDelay = 3000; // 3 seconds
@@ -81,7 +94,7 @@
 
       if (currentStep >= totalSteps) {
         clearInterval(timer);
-        window.location.href = "https://cl-gine.github.io/final/goodnight.html";
+        window.location.href = "https://cl-gine.github.io/final/goodmorning.html";
       }
     }, updateInterval);
   </script>
