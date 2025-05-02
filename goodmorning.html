@@ -1,111 +1,83 @@
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name=viewport content="width=device-width,initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script>
-    $(document).ready(function(){
-		$("h1").fitText();
-
-			setTimeout(function(){
-				window.location.href = 'https://cl-gine.github.io/final/goodnight.html';
-			}, 3500);
-
-    });
-
-
-    (function( $ ){
-		$.fn.fitText = function( kompressor, options ) {
-
-		    var settings = {
-	        'minFontSize' : Number.NEGATIVE_INFINITY,
-	        'maxFontSize' : Number.POSITIVE_INFINITY
-	      };
-
-				return this.each(function(){
-					var $this = $(this);              // store the object
-					var compressor = kompressor || 1; // set the compressor
-
-	        if ( options ) {
-	          $.extend( settings, options );
-	        }
-
-	        // Resizer() resizes items based on the object width divided by the compressor * 10
-					var resizer = function () {
-						$this.css('font-size', Math.max(Math.min($this.width() / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)));
-					};
-
-					// Call once to set.
-					resizer();
-
-					// Call on resize. Opera debounces their resize by default.
-	      	$(window).resize(resizer);
-
-				});
-
-		};
-
-	})( jQuery );
-
-
-  </script>
-  <style>
-  	html, body {
-  		width: 100%;
-  		height: 100%;
-  		background-color: #fff;
-  		border: 0px;
-  		padding: 0px;
-  	}
-
-  	#inner {
-	  	width: 100%;
-	  	height: 100%;
-	  	display: table;
-  	}
-
-  	h1 {
-  		display: table-cell;
-  		vertical-align: middle;
-  		font-family: Helvetica, Arial, sans-serif;
-  		font-size: 50px;
-  		text-align: center;
-  		height: 50px;
-  	}
-
-  	#footer { bottom: 5px; position: absolute; color: #999; font-family: Helvetica, Arial, sans-serif; font-size: 11px;}
-  	#social { bottom: 5px; right: 5px; position: absolute; }
-  	a { color: #999; }
-
-
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Goodmorning</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+      font-family: Helvetica, Arial, sans-serif;
+    }
 
-  <script type="text/javascript">
+    #inner {
+      width: 100%;
+      height: 100%;
+      display: table;
+    }
 
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-147514-29']);
-	  _gaq.push(['_trackPageview']);
+    h1 {
+      display: table-cell;
+      vertical-align: middle;
+      font-size: 50px;
+      text-align: center;
+      height: 50px;
+    }
 
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
+    /* Progress bar container */
+    #progress-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background-color: #eee;
+    }
 
-	</script>
+    /* Animated progress bar */
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #333;
+      transition: width 0.1s linear;
+    }
+  </style>
 </head>
 <body>
-	<iframe src="silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
 
-	<div id="jquery_jplayer_1" class="jp-jplayer"></div>
-	
-	<div id="inner">
-	<h1>Goodmorning</h1>
-	</div>
+  <!-- Optional hidden audio (unchanged) -->
+  <iframe src="silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
+
+  <div id="inner">
+    <h1>Goodmorning</h1>
+  </div>
+
+  <!-- Progress Bar -->
+  <div id="progress-container">
+    <div id="progress-bar"></div>
+  </div>
+
+  <script>
+    const progressBar = document.getElementById("progress-bar");
+    const redirectDelay = 5000; // 5 seconds
+    const updateInterval = 100; // update every 100ms
+    const totalSteps = redirectDelay / updateInterval;
+    let currentStep = 0;
+
+    const timer = setInterval(() => {
+      currentStep++;
+      const progressPercent = (currentStep / totalSteps) * 100;
+      progressBar.style.width = progressPercent + "%";
+
+      if (currentStep >= totalSteps) {
+        clearInterval(timer);
+        window.location.href = "https://cl-gine.github.io/final/goodnight.html";
+      }
+    }, updateInterval);
+  </script>
 
 </body>
 </html>
