@@ -87,9 +87,9 @@
     <h1>Goodmorning</h1>
   </div>
 
-    <audio autoplay>
+  <!-- <audio autoplay>
     <source src="Goodmorning.mp3" type="audio/mp3">
-  </audio>
+  </audio> -->
 
   <!-- Progress Bars -->
   <div class="vertical-bar left-bar">
@@ -119,6 +119,14 @@
         window.location.href = "https://cl-gine.github.io/final/goodnight.html";
       }
     }, updateInterval);
+
+      window.addEventListener('DOMContentLoaded', function () {
+    var audio = new Audio("https://github.com/cl-gine/final/goodmorning.mp3");
+    audio.play().catch(function(error) {
+      console.log("Autoplay failed:", error);
+    });
+  });
+    
   </script>
 
 </body>
