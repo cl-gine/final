@@ -2,9 +2,6 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- To make viewable on phone -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <meta name="theme-color" content="#513b74"> -->
   <meta name="theme-color" content="#ffcc00">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,7 +12,7 @@
     html, body {
       width: 100%;
       height: 100%;
-      background: url('https://i.imgur.com/lW45MyO.jpeg') no-repeat center center fixed;
+      background: no-repeat center center fixed;
       background-size: cover;
       margin: 0;
       padding: 0;
@@ -68,17 +65,18 @@
       background-color: #fbcd00;
       transition: height 0.1s linear;
     }
-    /*To make viewable on phones*/
-@media (max-width: 768px) {
-  h1 {
-    font-size: 12vw; 
-    padding: 0 10px; /* Adds some breathing room */
-  }
-/*To make viewable on phones*/
-  .vertical-bar {
-    width: 4px;
-  }
-}
+
+    /* To make viewable on phones */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 12vw; 
+        padding: 0 10px;
+      }
+
+      .vertical-bar {
+        width: 4px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -86,10 +84,6 @@
   <div id="inner">
     <h1>Goodmorning</h1>
   </div>
-
-  <!-- <audio autoplay>
-    <source src="Goodmorning.mp3" type="audio/mp3">
-  </audio> -->
 
   <!-- Progress Bars -->
   <div class="vertical-bar left-bar">
@@ -101,9 +95,28 @@
   </div>
 
   <script>
+    // Array of background image URLs
+    const backgroundImages = [
+      "https://i.imgur.com/lW45MyO.jpeg",
+      "https://i.imgur.com/00A4XLM.jpeg" // Replace with real image URLs
+    ];
+
+    // Preload all images
+    backgroundImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    // Set a random image as the background when DOM is ready
+    window.addEventListener('DOMContentLoaded', () => {
+      const randomImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+      document.body.style.backgroundImage = `url('${randomImage}')`;
+    });
+
+    // Progress bar and redirect logic
     const leftProgress = document.getElementById("left-progress");
     const rightProgress = document.getElementById("right-progress");
-    const redirectDelay = 3000; // Time
+    const redirectDelay = 3000; // Time in milliseconds
     const updateInterval = 100;
     const totalSteps = redirectDelay / updateInterval;
     let currentStep = 0;
@@ -118,7 +131,7 @@
         clearInterval(timer);
         window.location.href = "https://cl-gine.github.io/final/goodnight.html";
       }
-    }, updateInterval);    
+    }, updateInterval);
   </script>
 
 </body>
